@@ -1,5 +1,5 @@
 import logging
-
+import numpy as np
 import keras.backend as K
 import math
 from keras import layers
@@ -211,4 +211,8 @@ def recurrent_model(input_shape=(NUM_FRAMES, 64, 1),
     return model
 
 if __name__ == '__main__':
-    convolutional_model()
+    input_shape = (1,160, 64, 1)
+    x = np.zeros(input_shape)
+    model = convolutional_model()
+    y = model.predict_on_batch(x)
+    print(y.shape)

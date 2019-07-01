@@ -9,6 +9,8 @@
 import numpy as np
 import librosa
 import keras
+import sys
+sys.path.append('../speakerVerificationSystem/')
 import tensorflow as tf
 import constants as c
 import keras.backend as K
@@ -18,17 +20,18 @@ import glob
 from models import my_convolutional_model
 from eval_metrics import evaluate
 #from test_model import create_test_data
-from attack_utils import cosineDistanceLoss, cal_snr
+from attack_utils import cosineDistanceLoss, cal_snr, load_wavs
 class Attack():
-    def __init__(self, checkpoint_path, step_size = 0.01, num_steps = 200, output_dir = './adversarial'):
+    def __init__(self, checkpoint_path, step_size = 0.01, num_steps = 200, wav_dir = c.ATTACK_WAV_DIR, output_dir = './adversarial'):
         self.step_size = step_size
         self.num_steps = num_steps 
         self.checkpoint_path = checkpoint_path
         self.optimizer =  keras.optimizers.Adam(lr = step_size)
         self.print_steps = self.num_steps / 20
         self.output_dir = output_dir
+        self.dataset_dir = wav_dir
         # Load model in intialization
-        #3. Load model
+
         input_shape = (25840, )
         model = my_convolutional_model(input_shape, batch_size = 1, num_frames = 160)
         #4. Load layers weigths by name
@@ -36,18 +39,15 @@ class Attack():
 
         for layer in model.layers[3:]:
             layer.trainable = False
+        
         # Ensure trainable variables
         model.layers[1].trainable = True
         my_loss = cosineDistanceLoss() 
+        
         model.compile(optimizer = self.optimizer, loss = my_loss, metrics= ['accuracy'])
         self.model = model
-    def load_wav(self, dataset_dir):
-        vox = pd.DataFrame()
-        vox['wav'] = glob.glob(dataset_dir + '*.wav')
-        vox['speaker_id'] = vox['wav'].apply(lambda x : x.split('/')[-1].split('_')[0])
-        num_speakers = len(vox['speaker_id'].unique())
-        print("Load {} wavs from {} speakers".format(str(len(vox)), str(num_speakers)))
-        return vox
+    
+    
     def calculate_sim(self, target_speaker_model, positive_embedding, neg_embeddings):
         anchor = np.tile(target_speaker_model, (neg_embeddings.shape[0] + 1, 1))
         pos_neg_embeddings = np.concatenate((positive_embedding, neg_embeddings), axis = 0)
@@ -56,27 +56,30 @@ class Attack():
         #print(sim)
         return sim
 
-    def attack(self, dataset_dir = c.TEST_WAV_DIR, num_anc = 5, num_pos = 1, num_neg = 30):
+    def attack(self, dataset_dir = self.dataset_dir, num_anc = 5, num_pos = 1, num_neg = 30):
         # The goal of this function is to extract several batches of samples like (5AN, 1P, 30N)
         # Enroll with 5AN
         # Build threshold using (embedding, 1P, 29N)
         # Some noise is added to the last negative utterance for attack
 
-        vox = self.load_wav(dataset_dir)
+        vox = self.load_wavs(dataset_dir)
         unique_speakers = list(vox['speaker_id'].unique())
         np.random.shuffle(unique_speakers)
         num_triplets = len(unique_speakers) #40
         success_cnt = 0 
         enrolled_meta = "attack.enroll.meta.txt"
         enrolled_meta_file = open(enrolled_meta, 'w')
+        # Write the enroll information out to a file
         for ii in range(num_triplets):
             print("attack for speaker {}".format(unique_speakers[ii]))
             anchor_positive_file = vox[vox['speaker_id'] == unique_speakers[ii]]
-            if len(anchor_positive_file) < 6:
+
+            #We need at least num_anc + num_pos audios from on speaker
+            if len(anchor_positive_file) < num_anc + num_pos:
                 continue
-            anchor_positive_file = anchor_positive_file.sample(n = 6, replace=False)
-            anchor_files = anchor_positive_file[:5]
-            positive_files = anchor_positive_file[5:6]
+            anchor_positive_file = anchor_positive_file.sample(n = num_anc + num_pos, replace=False)
+            anchor_files = anchor_positive_file[: num_anc]
+            positive_files = anchor_positive_file[num_anc : num_anc + num_pos]
 
             negative_files = vox[vox['speaker_id'] != unique_speakers[ii]].sample(n=num_neg, replace=False)
             #print(len(negative_files['speaker_id'].unique()))
@@ -85,8 +88,8 @@ class Attack():
             source_speaker_id = negative_files[-1:]['speaker_id'].values[0]
             target_speaker_id = unique_speakers[ii]
         
-            path_to_save = self.output_dir + source_wav.split('/')[-1][:-4] + "*" + target_speaker_id + ".wav"
-            print("Source {} target {} source_wav {}".format(source_speaker_id, target_speaker_id, source_wav))
+            path_to_save = self.output_dir + source_wav.split('/')[-1][:-4] + "-" + target_speaker_id + ".wav"
+            print("target speaker {}; source_wav {}".format(target_speaker_id, source_wav))
             
             enrolled_meta_file.write(path_to_save+'\n')
 
@@ -120,9 +123,9 @@ class Attack():
             y_pred = self.calculate_sim(target_speaker_model, positive_embedding, neg_embeddings)
             y_true = np.hstack(([1] * num_pos, np.zeros( num_neg - 1)))
             fm, tpr, acc, eer, target_threshold = evaluate(y_pred, y_true)
-            print("fm {} tpr {} acc{} eer [] threshold {}".format(fm, tpr, acc, eer, target_threshold))
+            print("fm {}; tpr {}; acc{}; eer {}; threshold {}".format(fm, tpr, acc, eer, target_threshold))
 
-            success_cnt += self.attack_simple(source_wav, path_to_save, target_speaker_model, target_threshold)
+            #success_cnt += self.attack_simple(source_wav, path_to_save, target_speaker_model, target_threshold)
             #break
         print("success rate", success_cnt, 40)
     def attack_simple(self, source_wav, path_to_save, target_embedding_vector, target_threshold):
@@ -170,14 +173,9 @@ class Attack():
         print("save to", path_to_save)
         return success
 if __name__ == '__main__':
-    checkpoint_path = './best_checkpoint/best_model60800_0.08824.h5'
-    output_dir = './adversarial/'
+    checkpoint_path = '../speakerVerificationSystem/checkpoints/model_17200_0.54980.h5'
+    output_dir = '../data/adversarial/'
     attack = Attack(checkpoint_path, 0.0001, 200, output_dir)
-    source_wav = '../dataset/vox-test-wav-vad/id10270_5r0dWxy17C8_00001.wav'
-    target_embedding_vector_path = './embeddings/id10275.npy'
-    #path_to_save = './adversarial/' + source_wav.split('/')[-1][:-4] + '_' + target_embedding_vector_path.split('/')[-1][:-4] + '.wav'
-    path_to_save = './adversarial/1.wav'
-    #attack.attack(source_wav, path_to_save, target_embedding_vector_path)
     attack.attack()
     '''
     a = np.zeros([1,512])

@@ -11,6 +11,7 @@ KALDI_DIR = ''
 DEV_DIR = '/home/lei/d/LibriSpeech/dev-clean/'
 DEV_NPY = '/home/lei/2019/dataset/LibriSpeech/dev-clean-npy/'
 
+ATTACK_WAV_DIR = '/home/lei/2019/AttackSpeakerVerification/dev-clean-clip/'
 
 BATCH_SIZE = 32        #must be even
 TRIPLET_PER_BATCH = 3
