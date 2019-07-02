@@ -128,7 +128,7 @@ class Attack():
             y_true = np.hstack(([1] * num_pos, np.zeros( num_neg - 1)))
             fm, tpr, acc, eer = evaluate(y_pred, y_true)
             print("fm {}; tpr {}; acc{}; eer {}".format(fm, tpr, acc, eer))
-            target_threshold = 0.9
+            target_threshold = 0.8
             success_cnt += self.attack_simple(source_wav, path_to_save, target_speaker_model, target_threshold)
             #break
         print("success rate", success_cnt, 40)
@@ -175,7 +175,7 @@ class Attack():
 if __name__ == '__main__':
     checkpoint_path = '../speakerVerificationSystem/checkpoints/model_17200_0.54980.h5'
     output_dir = '../data/adversarial/'
-    attack = Attack(checkpoint_path, 0.0001, 200,c.ATTACK_WAV_DIR ,output_dir)
+    attack = Attack(checkpoint_path, 0.0001, 300,c.ATTACK_WAV_DIR ,output_dir)
     attack.attack()
     '''
     a = np.zeros([1,512])
