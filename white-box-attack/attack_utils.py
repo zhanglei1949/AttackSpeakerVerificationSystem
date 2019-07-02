@@ -6,8 +6,11 @@ import math
 import tensorflow as tf
 import numpy as np
 import soundfile
+import pandas as pd
 # Assume the audio is filtered, and fixed length.
 
+import sys
+sys.path.append('../speakerVerficationSystem/')
 from pre_process import read_audio,extract_features
 from constants import SAMPLE_RATE
 from keras.engine.topology import Layer
@@ -35,9 +38,9 @@ from python_speech_features import get_filterbanks
 # define a new keras layer, 
 
 # define a custimized cosine distance loss function
-def load_wavs(self, dataset_dir):
+def load_wavs(dataset_dir):
     vox = pd.DataFrame()
-    vox['wav'] = glob.glob(dataset_dir + '**/*.wav')
+    vox['wav'] = glob.glob(dataset_dir + "**.wav")
     vox['speaker_id'] = vox['wav'].apply(lambda x : x.split('/')[-1].split('-')[0])
     num_speakers = len(vox['speaker_id'].unique())
     print("Load {} wavs from {} speakers".format(str(len(vox)), str(num_speakers)))
