@@ -19,7 +19,7 @@ import keras.backend as K
 import constants as c
 
 import keras
-from keras import optimizers 
+from keras import optimizers, regularizers 
 #from models import my_convolutional_model 
 import numpy as np
 from keras.models import Model
@@ -62,6 +62,7 @@ class add_noise(Layer):
         self.kernel = self.add_weight(name='noise',
                                     shape=(input_shape[1],),
                                  initializer='zeros',  # TODO: Choose your initializer
+                                 regularizer = regularizers.l2(0.01),
                                  trainable=True)
         super(add_noise, self).build(input_shape)
 

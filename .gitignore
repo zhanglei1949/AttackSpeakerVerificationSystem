@@ -1,5 +1,6 @@
 #project related
 data/
+.vscode/
 # Linux fs
 *.swp
 # Byte-compiled / optimized / DLL files
