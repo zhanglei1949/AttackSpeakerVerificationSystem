@@ -6,6 +6,8 @@
 # Using create_test_data in test_model.py to generate (1A, 1P, 100N)
 # Select one negative audio as source audio
 # first evaluate to get the optimum eer and threshold, then adding noise to surpass this threshold
+import matlab
+import matlab.engine
 import numpy as np
 import librosa
 import keras
@@ -21,6 +23,8 @@ from models import my_convolutional_model
 from eval_metrics import evaluate
 #from test_model import create_test_data
 from attack_utils import cosineDistanceLoss, cal_snr, load_wavs
+
+DEBUG = 1
 class Attack():
     def __init__(self, checkpoint_path, step_size = 0.01, num_steps = 200, wav_dir = c.ATTACK_WAV_DIR, output_dir = './adversarial/', embedding_dir = '../data/embeddings/'):
         self.step_size = step_size
@@ -32,9 +36,12 @@ class Attack():
         self.dataset_dir = wav_dir
         self.embedding_dir = embedding_dir
         # Load model in intialization
-
+        
         input_shape = (25840, )
-        model = my_convolutional_model(input_shape, batch_size = 1, num_frames = 160)
+        #IF debug == 1
+        #self.threshold_plh = K.backend.placeholder(shape=(1, 160, 257), name='threshold_plh')
+        threshold_input_shape = ( 160, 257)
+        model = my_convolutional_model(input_shape, threshold_input_shape, batch_size = 1, num_frames = 160)
         #4. Load layers weigths by name
         model.load_weights(self.checkpoint_path, by_name = True)
 
@@ -43,6 +50,8 @@ class Attack():
         
         # Ensure trainable variables
         model.layers[1].trainable = True
+        model.layers[3].trainable = True
+#        print(model.layers)
         my_loss = cosineDistanceLoss() 
         
         model.compile(optimizer = self.optimizer, loss = my_loss, metrics= ['accuracy'])
@@ -64,8 +73,11 @@ class Attack():
         # Some noise is added to the last negative utterance for attack
         dataset_dir = self.dataset_dir
         vox = load_wavs(dataset_dir)
-        unique_speakers = list(vox['speaker_id'].unique())
-        np.random.shuffle(unique_speakers)
+        if DEBUG == 1:
+            unique_speakers = sorted(list(vox['speaker_id'].unique()))
+        else: 
+            unique_speakers = list(vox['speaker_id'].unique())
+            np.random.shuffle(unique_speakers)
         num_triplets = len(unique_speakers) #40
         success_cnt = 0 
         enrolled_meta = "attack.enroll.meta.txt"
@@ -78,11 +90,17 @@ class Attack():
             #We need at least num_anc + num_pos audios from on speaker
             if len(anchor_positive_file) < num_anc + num_pos:
                 continue
-            anchor_positive_file = anchor_positive_file.sample(n = num_anc + num_pos, replace=False)
+            if DEBUG == 1: 
+                anchor_positive_file = anchor_positive_file[:num_anc + num_pos]
+            else:
+                anchor_positive_file = anchor_positive_file.sample(n = num_anc + num_pos, replace=False)
             anchor_files = anchor_positive_file[: num_anc]
             positive_files = anchor_positive_file[num_anc : num_anc + num_pos]
 
-            negative_files = vox[vox['speaker_id'] != unique_speakers[ii]].sample(n=num_neg, replace=False)
+            if DEBUG == 1:
+                negative_files = vox[vox['speaker_id'] != unique_speakers[ii]][:num_neg]
+            else:
+                negative_files = vox[vox['speaker_id'] != unique_speakers[ii]].sample(n=num_neg, replace=False)
             #print(len(negative_files['speaker_id'].unique()))
             # Now lanch attack
             source_wav = negative_files[-1:]['wav'].values[0]
@@ -94,6 +112,9 @@ class Attack():
             enrolled_meta_file.write("attack speaker {}".format(target_speaker_id)) 
             enrolled_meta_file.write(path_to_save+'\n')
 
+            # Randomly generate a mask matrix, not effecting the results
+            _rd_threshold = np.random.rand(1, 160, 257)
+
             # get the embedding vector by averaging 5 embeddings
             # Predict on batch is not supported
             target_speaker_embeddings = []
@@ -101,7 +122,9 @@ class Attack():
                 enrolled_meta_file.write(str(i) + " " + anchor_files[i:i+1]['wav'].values[0] + '\n')
                 audio,fs = librosa.load(anchor_files[i:i+1]['wav'].values[0], c.SAMPLE_RATE)
                 audio = np.reshape(audio, (1, 25840))
-                embedding = self.model.predict_on_batch(audio)
+                
+                
+                embedding = self.model.predict_on_batch([audio, _rd_threshold])
                 embedding = np.reshape(embedding, (1, 512))
                 target_speaker_embeddings.append(embedding)
             target_speaker_model = np.mean(target_speaker_embeddings, axis = 0)
@@ -113,12 +136,12 @@ class Attack():
             #get the threshold
             positive_audio,fs = librosa.load(positive_files[0:1]['wav'].values[0], c.SAMPLE_RATE)
             positive_audio = np.reshape(positive_audio, (1,25840))
-            positive_embedding = self.model.predict_on_batch(positive_audio)
+            positive_embedding = self.model.predict_on_batch([positive_audio, _rd_threshold])
             neg_embeddings = []
             for i in range(num_neg - 1):
                 audio,fs = librosa.load(negative_files[i:i+1]['wav'].values[0], c.SAMPLE_RATE)
                 audio = np.reshape(audio, (1, 25840))
-                embedding = self.model.predict_on_batch(audio)
+                embedding = self.model.predict_on_batch([audio, _rd_threshold])
                 embedding = np.reshape(embedding, (1, 512))
                 neg_embeddings.append(embedding)
             neg_embeddings = np.asarray(neg_embeddings)
@@ -131,6 +154,8 @@ class Attack():
             target_threshold = 0.8
             success_cnt += self.attack_simple(source_wav, path_to_save, target_speaker_model, target_threshold)
             #break
+            if (DEBUG == 1):
+                break
         print("success rate", success_cnt, 40)
     def attack_simple(self, source_wav, path_to_save, target_embedding_vector, target_threshold):
         success = 0
@@ -144,15 +169,43 @@ class Attack():
         #2. Load target embeddings
         target_embedding_vector = np.reshape(target_embedding_vector, (1, 512))
         #print("target vector shape", target_embedding_vector.shape)
+        
+        #3. If DEBUG, compute hearing threshold.
+        if (DEBUG == 1):
+            engine = matlab.engine.start_matlab()
+            hearingThreshold = np.asarray(engine.test_threshold(source_wav))
+            #Hearing threshold is normalized to (0,1)
+            # To padding (1, 160, 256) to (1,160, 257)
+            #print(hearingThreshold.shape) (161, 256)
+            hearingThreshold = np.reshape(hearingThreshold[:160,:], (1, 160, 256))
+            hearingThreshold = np.concatenate([hearingThreshold, hearingThreshold[:,:,255:]], axis = 2)
+            # supposed to be (1,160, 257)
+            print("hearing threshold after concatenate", hearingThreshold.shape)
+
 
         perturbation = np.zeros((1, 25840))
         zero_weights = np.zeros((25840,))
         self.model.layers[1].set_weights([zero_weights])
         new_audio = original_audio + perturbation
         for i in range(self.num_steps):
-            loss,_ = self.model.train_on_batch(new_audio, target_embedding_vector)
+            loss,_ = self.model.train_on_batch([new_audio,hearingThreshold], target_embedding_vector)
 
-            perturbation += self.step_size * np.sign(self.model.layers[1].get_weights()[0])
+            perturbation += self.step_size * (self.model.layers[1].get_weights()[0])
+            print(perturbation[0][0])
+
+            if DEBUG == 1:
+
+                trainable_tensors = self.model.trainable_weights
+                #print(trainable_tensors)
+                gradients = K.gradients(self.model.output, trainable_tensors)
+                #print(gradients)
+                sess = K.get_session()
+                _gradients = sess.run(gradients, feed_dict={self.model.input[0] : new_audio, self.model.input[1] : hearingThreshold})
+                #sess = tf.Session()
+                #print(sess.run(gradients))
+                print(" gradients",_gradients[0][0])
+                print(" weight matrix", self.model.layers[1].get_weights()[0][0])
+                
             self.model.layers[1].set_weights([zero_weights])
             new_audio = original_audio + perturbation
             
@@ -162,15 +215,18 @@ class Attack():
                 break
             if (i % self.print_steps == 0): 
                 print("step {} loss {}  perturbation [max] {} [min] {} [avg] {}".format(i,loss, np.max(perturbation), np.min(perturbation), np.mean(perturbation)))
-        
+            
+            if DEBUG == 1:
+                break
         # save the adversarial audio
         adversarial_audio = np.reshape(new_audio, (25840,))
         noise = np.reshape(perturbation, (25840,))
         #cal snr
         snr = cal_snr(original_audio, noise)
         print('snr', snr)
-        soundfile.write(path_to_save, adversarial_audio, c.SAMPLE_RATE, subtype='PCM_16')
-        print("save to", path_to_save)
+        if (DEBUG == 0):
+            soundfile.write(path_to_save, adversarial_audio, c.SAMPLE_RATE, subtype='PCM_16')
+            print("save to", path_to_save)
         return success
 if __name__ == '__main__':
     checkpoint_path = '../speakerVerificationSystem/checkpoints/model_17200_0.54980.h5'

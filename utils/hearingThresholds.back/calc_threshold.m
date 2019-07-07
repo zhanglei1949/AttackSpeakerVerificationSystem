@@ -1,13 +1,13 @@
 function remapped_heating_thr = calc_threshold(wav_files, win_len, overlap, destination)
 
 add_pre = '';
-
 addpath('MPEG1')
+
 
 utt = {};
 id = {};
 fid = fopen(wav_files);
-tline = fgetl(fid);
+tline = fgetl(fid); % get line?
 while ischar(tline)
     C = strsplit(tline,' ');
     id{end+1} = C{1};

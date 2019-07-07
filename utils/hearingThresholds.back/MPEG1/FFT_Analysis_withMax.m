@@ -1,4 +1,4 @@
-function [X, Delta]  = FFT_Analysis(Input, n)
+function [X, Delta]  = FFT_Analysis_withMax(Input, n, max_val)
 %X = FFT_Analysis(Input, n)
 %
 %   Compute the auditory spectrum using the Fast Fourier Transform.
@@ -71,7 +71,7 @@ h = sqrt(8/3) * hanning(FFT_SIZE);
 
 % Power density spectrum
 X = max(20 * log10(abs(fft(s .* h)) / FFT_SIZE), MIN_POWER);
-% X = max((abs(fft(s .* h)) .^ 2 / FFT_SIZE), MIN_POWER);
+
 % Normalization to the reference sound pressure level of 96 dB
-%Delta = 96 - max(X);
-%X = X + 96 +  Delta;
+Delta = 96 - max_val;
+X = X + Delta;

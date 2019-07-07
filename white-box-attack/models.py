@@ -13,7 +13,7 @@ from keras.models import Model
 import tensorflow as tf
 
 from constants import *
-from attack_utils import add_noise, fbank_layer
+from attack_utils import add_noise, fbank_layer_1, fbank_layer_2
 def clipped_relu(inputs):
     return Lambda(lambda y: K.minimum(K.maximum(y, 0), 20))(inputs)
 
@@ -86,7 +86,8 @@ def identity_block2(input_tensor, kernel_size, filters, stage, block):   # next 
     x = clipped_relu(x)
     return x
 
-def my_convolutional_model(input_shape,    #input_shape(32,32,3)
+def my_convolutional_model(input_audio_shape = (25840,),    #input_shape(32,32,3)
+                        input_threshold_shape = (160, 257), # shape (1, 160, 257)
                         batch_size=BATCH_SIZE * TRIPLET_PER_BATCH , num_frames=NUM_FRAMES):
     # http://cs231n.github.io/convolutional-networks/
     # conv weights
@@ -125,18 +126,46 @@ def my_convolutional_model(input_shape,    #input_shape(32,32,3)
         x_ = conv_and_res_block(x_, 512, stage=4)
         return x_
 
-    inputs = Input(shape=input_shape)  # TODO the network should be definable without explicit batch shape
-    noise_added = add_noise()(inputs)
+    inputs_audio = Input(shape=input_audio_shape)  # TODO the network should be definable without explicit batch shape
+    noise_added = add_noise()(inputs_audio)
+
+    inputs_hearing_threshold = Input(shape = input_threshold_shape)
     #3. fbank layer
-    fbank_feature = fbank_layer()(noise_added)
+    fbank_feature_1 = fbank_layer_1()(noise_added)
+    #print(fbank_feature_1.shape)
+    #4.one identity layer output just the input, but change the gradient calculation
+    @tf.custom_gradient
+    def scale_grad_layer(x):
+        def grad(dy):
+            #print("in grad", dy.shape)
+            #TODO:scaling 
+            #return dy
+            return tf.multiply(dy, inputs_hearing_threshold)
+            
+        return x, grad
+
+    fbank_feature_1_scaled = Lambda(lambda x : scale_grad_layer(x), name = 'scaling')(fbank_feature_1) 
+    fbank_feature_2 = fbank_layer_2()(fbank_feature_1_scaled)
+    # Another try
+    #@tf.RegisterGradient("ClipGrad")
+    #def _clip_grad(unused_op, grad):
+    #    return 100 * grad
+    #g = tf.get_default_graph()
+    #with g.gradient_override_map({"Identity": "ClipGrad"}):
+    #    fbank_feature_scaled = Lambda(lambda x : K.identity(x), name = "identity")(fbank_feature)
+
+    # Yet anther try
+    #fbank_feature_scaled = Lambda(lambda x: 10 * x + K.stop_gradient(x - 10 * x), name = "ccc")(fbank_feature)
+
+    print(fbank_feature_2.shape)
     #x = Lambda(lambda y: K.reshape(y, (batch_size*num_frames,input_shape[1], input_shape[2], input_shape[3])), name='pre_reshape')(inputs)
-    x = cnn_component(fbank_feature)  # .shape = (BATCH_SIZE , num_frames/16, 64/16, 512)
+    x = cnn_component(fbank_feature_2)  # .shape = (BATCH_SIZE , num_frames/16, 64/16, 512)
     x = Lambda(lambda y: K.reshape(y, (-1, math.ceil(num_frames/16), 2048)), name='reshape')(x)
     x = Lambda(lambda y: K.mean(y, axis=1), name='average')(x)  #shape = (BATCH_SIZE, 512)
     x = Dense(512, name='affine')(x)  # .shape = (BATCH_SIZE , 512)
     x = Lambda(lambda y: K.l2_normalize(y, axis=1), name='ln')(x)
 
-    model = Model(inputs, x, name='convolutional')
+    model = Model(inputs=[inputs_audio, inputs_hearing_threshold], outputs=x, name='convolutional')
 #   model = Model(inputs, fbank_feature, name='fbank_features')
     #print(model.summary())
     return model

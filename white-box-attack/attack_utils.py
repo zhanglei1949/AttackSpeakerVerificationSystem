@@ -71,9 +71,10 @@ class add_noise(Layer):
     def compute_output_shape(self, input_shape):
         # output shape is (?, 25840)
         return input_shape
-class fbank_layer(Layer):
+class fbank_layer_1(Layer):
+    # calculate the first phrase of features
     def __init__(self, **kwargs):
-        super(fbank_layer, self).__init__(**kwargs)
+        super(fbank_layer_1, self).__init__(**kwargs)
     def build(self, input_shape):
         
         self.winlen = 0.025
@@ -82,7 +83,7 @@ class fbank_layer(Layer):
         self.nfilt = 64
         # Calculate input shape
         #self.output_shape=(160,64)
-        super(fbank_layer, self).build(input_shape)
+        super(fbank_layer_1, self).build(input_shape)
 
     def call(self, x, **kwargs):
         #1. preemphasis
@@ -106,7 +107,64 @@ class fbank_layer(Layer):
         fft = 1.0 / self.nfft * tf.square(tf.abs(fft))
 
         #5. compute the mel features of fft
-        energy = tf.reduce_sum(fft, axis=2)+1e-30
+        #energy = tf.reduce_sum(fft, axis=2)+1e-30
+        #filters = get_filterbanks(self.nfilt, self.nfft, c.SAMPLE_RATE, 0, None).T
+        #feat = tf.matmul(fft, np.array([filters]*1, dtype = np.float32)) + 1e-30
+        #6. Scale
+        #outlist = []
+        #for i in range(0, feat.shape[1]):
+        #    outlist.append(tf.reshape(tf.div(
+        #            tf.subtract(feat[:,i,:], tf.reduce_mean(feat[:,i,:])),
+        #            K.std(feat[:,i,:])
+        #        ), (64, 1)))
+        #feat = tf.stack(outlist)
+        
+        #feat = tf.reshape(feat, (1, feat.shape[0], feat.shape[1], feat.shape[2]))
+       
+        return fft
+    def compute_output_shape(self, input_shape):
+        #
+        #return self.output_shape
+        #return (input_shape[0], 160, 64, 1)
+        return (input_shape[0], 160, self.nfft / 2 + 1)
+
+class fbank_layer_2(Layer):
+    # calculate the first phrase of features
+    def __init__(self, **kwargs):
+        super(fbank_layer_2, self).__init__(**kwargs)
+    def build(self, input_shape):
+        
+        self.winlen = 0.025
+        self.hop_length = 0.01
+        self.nfft = 512
+        self.nfilt = 64
+        # Calculate input shape
+        #self.output_shape=(160,64)
+        super(fbank_layer_2, self).build(input_shape)
+
+    def call(self, fft, **kwargs):
+        #1. preemphasis
+        #x = K.concatenate( [x[:,:1], x[:,1:] - 0.97*x[:,:-1]], axis = 1)
+        #2. padding
+        #audio_len = int(x.shape[1])
+        #frame_len = int(c.SAMPLE_RATE * self.winlen)
+        #frame_step = int(c.SAMPLE_RATE * self.hop_length)
+
+        #num_frames =  1 + int(math.ceil((1.0 * audio_len - frame_len)/frame_step))
+        #print('num_frames', num_frames)
+        #paddings = K.zeros((1, int((num_frames - 1) * frame_step + frame_len) - audio_len), dtype=tf.float32)
+        #padded = K.concatenate( [x, paddings] , axis = 1)
+        #print('padded', padded.shape)
+
+        #3. windowing tnto frames
+        #windowed = K.stack([padded[:,i : i + frame_len] for i in range(0, audio_len - frame_len + 1, frame_step)], 1)
+
+        #4. take fft, to frequency space
+        #fft = tf.spectral.rfft(windowed, [self.nfft])
+        #fft = 1.0 / self.nfft * tf.square(tf.abs(fft))
+
+        #5. compute the mel features of fft
+        #energy = tf.reduce_sum(fft, axis=2)+1e-30
         filters = get_filterbanks(self.nfilt, self.nfft, c.SAMPLE_RATE, 0, None).T
         feat = tf.matmul(fft, np.array([filters]*1, dtype = np.float32)) + 1e-30
         #6. Scale
@@ -124,8 +182,7 @@ class fbank_layer(Layer):
     def compute_output_shape(self, input_shape):
         #
         #return self.output_shape
-        return (input_shape[0], 160, 64, 1)
-
+        return (input_shape[0], 160, self.nfilt, 1)
 
 # need VAD first.
 def VAD_and_save(source_path, target_path, target_len = 25840):

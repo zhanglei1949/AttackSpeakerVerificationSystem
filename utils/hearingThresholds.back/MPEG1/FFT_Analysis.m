@@ -71,7 +71,10 @@ h = sqrt(8/3) * hanning(FFT_SIZE);
 
 % Power density spectrum
 X = max(20 * log10(abs(fft(s .* h)) / FFT_SIZE), MIN_POWER);
-% X = max((abs(fft(s .* h)) .^ 2 / FFT_SIZE), MIN_POWER);
+% already the magnitude in db
+% X is of shape 512
+%X(1)
+%size(X)
 % Normalization to the reference sound pressure level of 96 dB
 %Delta = 96 - max(X);
 %X = X + 96 +  Delta;
