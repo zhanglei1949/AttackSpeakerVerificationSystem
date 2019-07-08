@@ -1,4 +1,4 @@
-function remapped_heating_thr = test_threshold(wav_file)
+function [remapped_heating_thr, remapped_heating_thr_dB] = test_threshold(wav_file)
 
 
 [audio, fs] = audioread(wav_file);

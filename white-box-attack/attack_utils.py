@@ -28,7 +28,7 @@ from keras import backend as K
 from keras.layers import Input
 #self defined noise layer
 #from attack_utils import add_noise, fbank_layer
-
+from python_speech_features import sigproc
 K.set_learning_phase(1)
 
 
@@ -62,7 +62,7 @@ class add_noise(Layer):
         self.kernel = self.add_weight(name='noise',
                                     shape=(input_shape[1],),
                                  initializer='zeros',  # TODO: Choose your initializer
-                                 regularizer = regularizers.l2(0.01),
+                                 regularizer = regularizers.l2(0.0001),
                                  trainable=True)
         super(add_noise, self).build(input_shape)
 
@@ -245,6 +245,21 @@ def cal_snr(sig, noise):
     a1 = np.sqrt(np.mean(p1))
     a2 = np.sqrt(np.mean(p2))
     return 20*np.log10(a1/a2)
+def cal_audiospec(audio, fs = 16000, winlen = 0.025, winstep=0.01,
+                nfft=512, lowfreq=0, highfreq=None, preemph=0.97,
+                winfunc=lambda x: np.ones((x,)),MINIMUM_POWER = -200):
+    #Follow the way in matlab's calculation, for convenience of comparision
+    highfreq= highfreq or fs/2
+    audio = sigproc.preemphasis(audio,preemph)
+    frames = sigproc.framesig(audio, winlen*fs, winstep*fs, winfunc)
+    pspec = sigproc.powspec(frames,nfft)
+    pspec = np.maximum(10 * np.log10(pspec), MINIMUM_POWER)
+    print("ori audio spec", pspec.shape)
+    # normalize to 96dB
+    max_val = np.max(pspec)
+    pspec = pspec + 96 - max_val
+    return pspec
+
 if __name__ == '__main__':
     source_dir = '/home/lei/dataset/voxceleb2/vox/vox1_test/wav/'
     target_dir = '/home/lei/2019/dataset/vox-test-wav-vad/'

@@ -4,3 +4,237 @@ attack speaker 1272../data/adversarial/3000-15664-0036-clip-1272.wav
 2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1272-135031-0023-clip.wav
 3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1272-141231-0011-clip.wav
 4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1272-141231-0028-clip.wav
+attack speaker 1462../data/adversarial/2086-149220-0016-clip-1462.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1462-170142-0019-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1462-170142-0000-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1462-170138-0014-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1462-170142-0020-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1462-170142-0010-clip.wav
+attack speaker 1673../data/adversarial/2086-149220-0016-clip-1673.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1673-143396-0016-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1673-143396-0001-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1673-143397-0003-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1673-143397-0004-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1673-143396-0003-clip.wav
+attack speaker 174../data/adversarial/2086-149220-0016-clip-174.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/174-84280-0008-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/174-168635-0014-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/174-168635-0005-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/174-50561-0019-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/174-168635-0007-clip.wav
+attack speaker 1919../data/adversarial/3000-15664-0036-clip-1919.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1919-142785-0035-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1919-142785-0029-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1919-142785-0043-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1919-142785-0020-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1919-142785-0047-clip.wav
+attack speaker 1988../data/adversarial/2086-149220-0016-clip-1988.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1988-147956-0016-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1988-147956-0019-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1988-147956-0010-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1988-24833-0000-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1988-148538-0014-clip.wav
+attack speaker 1993../data/adversarial/2086-149220-0016-clip-1993.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1993-147149-0003-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1993-147964-0005-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1993-147965-0005-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1993-147149-0025-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/1993-147149-0004-clip.wav
+attack speaker 2035../data/adversarial/2086-149220-0016-clip-2035.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2035-147960-0014-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2035-147960-0006-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2035-147961-0024-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2035-152373-0017-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2035-147961-0036-clip.wav
+attack speaker 2078../data/adversarial/3000-15664-0036-clip-2078.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2078-142845-0028-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2078-142845-0032-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2078-142845-0011-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2078-142845-0039-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2078-142845-0033-clip.wav
+attack speaker 2086../data/adversarial/3081-166546-0088-clip-2086.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2086-149220-0021-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2086-149214-0000-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2086-149220-0016-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2086-149220-0038-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2086-149220-0017-clip.wav
+attack speaker 2277../data/adversarial/3000-15664-0036-clip-2277.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2277-149896-0003-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2277-149874-0005-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2277-149897-0031-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2277-149874-0000-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2277-149874-0009-clip.wav
+attack speaker 2412../data/adversarial/2086-149220-0016-clip-2412.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2412-153947-0007-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2412-153948-0009-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2412-153947-0015-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2412-153948-0004-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2412-153954-0009-clip.wav
+attack speaker 2428../data/adversarial/3000-15664-0036-clip-2428.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2428-83705-0025-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2428-83705-0032-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2428-83705-0024-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2428-83705-0035-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2428-83699-0037-clip.wav
+attack speaker 251../data/adversarial/2086-149220-0016-clip-251.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/251-137823-0014-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/251-136532-0012-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/251-118436-0014-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/251-137823-0001-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/251-136532-0007-clip.wav
+attack speaker 2803../data/adversarial/3000-15664-0036-clip-2803.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2803-154320-0007-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2803-161169-0003-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2803-161169-0012-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2803-154328-0021-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2803-161169-0007-clip.wav
+attack speaker 2902../data/adversarial/3000-15664-0036-clip-2902.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2902-9008-0011-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2902-9006-0003-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2902-9006-0008-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2902-9008-0010-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/2902-9008-0012-clip.wav
+attack speaker 3000../data/adversarial/2035-147960-0006-clip-3000.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3000-15664-0034-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3000-15664-0036-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3000-15664-0027-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3000-15664-0031-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3000-15664-0023-clip.wav
+attack speaker 3081../data/adversarial/2086-149220-0016-clip-3081.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3081-166546-0071-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3081-166546-0088-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3081-166546-0060-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3081-166546-0054-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3081-166546-0085-clip.wav
+attack speaker 3170../data/adversarial/3000-15664-0036-clip-3170.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3170-137482-0004-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3170-137482-0039-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3170-137482-0006-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3170-137482-0011-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3170-137482-0005-clip.wav
+attack speaker 3536../data/adversarial/2086-149220-0016-clip-3536.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3536-8226-0007-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3536-23268-0027-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3536-23268-0004-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3536-8226-0016-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3536-8226-0011-clip.wav
+attack speaker 3576../data/adversarial/3000-15664-0036-clip-3576.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3576-138058-0026-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3576-138058-0024-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3576-138058-0000-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3576-138058-0019-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3576-138058-0025-clip.wav
+attack speaker 3752../data/adversarial/3000-15664-0036-clip-3752.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3752-4943-0017-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3752-4944-0038-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3752-4943-0010-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3752-4944-0056-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3752-4944-0015-clip.wav
+attack speaker 3853../data/adversarial/3000-15664-0036-clip-3853.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3853-163249-0003-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3853-163249-0025-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3853-163249-0040-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3853-163249-0039-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/3853-163249-0019-clip.wav
+attack speaker 422../data/adversarial/3000-15664-0036-clip-422.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/422-122949-0000-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/422-122949-0028-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/422-122949-0023-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/422-122949-0029-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/422-122949-0005-clip.wav
+attack speaker 5338../data/adversarial/2035-147960-0006-clip-5338.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5338-284437-0030-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5338-284437-0016-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5338-24615-0012-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5338-284437-0026-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5338-284437-0032-clip.wav
+attack speaker 5536../data/adversarial/2035-147960-0006-clip-5536.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5536-43363-0015-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5536-43358-0010-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5536-43363-0005-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5536-43358-0007-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5536-43363-0013-clip.wav
+attack speaker 5694../data/adversarial/2086-149220-0016-clip-5694.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5694-64029-0005-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5694-64038-0010-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5694-64029-0015-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5694-64025-0021-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5694-64025-0012-clip.wav
+attack speaker 5895../data/adversarial/2035-147960-0006-clip-5895.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5895-34622-0019-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5895-34629-0012-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5895-34622-0003-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5895-34615-0011-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/5895-34615-0008-clip.wav
+attack speaker 6241../data/adversarial/3000-15664-0036-clip-6241.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6241-66616-0009-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6241-61943-0027-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6241-61943-0020-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6241-61946-0015-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6241-66616-0006-clip.wav
+attack speaker 6295../data/adversarial/2086-149220-0016-clip-6295.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6295-244435-0013-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6295-244435-0032-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6295-64301-0026-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6295-64301-0005-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6295-244435-0008-clip.wav
+attack speaker 6313../data/adversarial/2086-149220-0016-clip-6313.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6313-66125-0019-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6313-66125-0018-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6313-66125-0000-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6313-66129-0005-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6313-66125-0002-clip.wav
+attack speaker 6319../data/adversarial/3000-15664-0036-clip-6319.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6319-57405-0008-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6319-57405-0012-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6319-64726-0001-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6319-57405-0011-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6319-275224-0007-clip.wav
+attack speaker 6345../data/adversarial/3000-15664-0036-clip-6345.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6345-93306-0024-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6345-64257-0007-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6345-93306-0001-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6345-93306-0003-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/6345-64257-0015-clip.wav
+attack speaker 652../data/adversarial/2086-149220-0016-clip-652.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/652-130726-0001-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/652-130726-0028-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/652-129742-0020-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/652-129742-0015-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/652-129742-0011-clip.wav
+attack speaker 777../data/adversarial/2035-147960-0006-clip-777.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/777-126732-0008-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/777-126732-0012-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/777-126732-0028-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/777-126732-0047-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/777-126732-0011-clip.wav
+attack speaker 7850../data/adversarial/2086-149220-0016-clip-7850.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7850-73752-0009-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7850-73752-0000-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7850-281318-0010-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7850-73752-0016-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7850-73752-0017-clip.wav
+attack speaker 7976../data/adversarial/3000-15664-0036-clip-7976.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7976-110523-0007-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7976-105575-0009-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7976-110124-0024-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7976-110124-0006-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/7976-110124-0016-clip.wav
+attack speaker 8297../data/adversarial/3081-166546-0088-clip-8297.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8297-275155-0031-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8297-275155-0029-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8297-275154-0007-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8297-275155-0001-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8297-275154-0024-clip.wav
+attack speaker 84../data/adversarial/3000-15664-0036-clip-84.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/84-121550-0027-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/84-121550-0012-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/84-121123-0025-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/84-121550-0022-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/84-121550-0025-clip.wav
+attack speaker 8842../data/adversarial/3000-15664-0036-clip-8842.wav
+0 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8842-302203-0009-clip.wav
+1 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8842-302201-0009-clip.wav
+2 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8842-302201-0007-clip.wav
+3 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8842-302201-0006-clip.wav
+4 /home/lei/2019/dataset/LibriSpeech/dev-clean-clip/8842-302201-0011-clip.wav

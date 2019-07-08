@@ -88,6 +88,7 @@ def identity_block2(input_tensor, kernel_size, filters, stage, block):   # next 
 
 def my_convolutional_model(input_audio_shape = (25840,),    #input_shape(32,32,3)
                         input_threshold_shape = (160, 257), # shape (1, 160, 257)
+                        ori_spec_shape = (160, 257),
                         batch_size=BATCH_SIZE * TRIPLET_PER_BATCH , num_frames=NUM_FRAMES):
     # http://cs231n.github.io/convolutional-networks/
     # conv weights
@@ -130,9 +131,12 @@ def my_convolutional_model(input_audio_shape = (25840,),    #input_shape(32,32,3
     noise_added = add_noise()(inputs_audio)
 
     inputs_hearing_threshold = Input(shape = input_threshold_shape)
+
+    inputs_ori_audiospec = Input(shape=ori_spec_shape)
     #3. fbank layer
     fbank_feature_1 = fbank_layer_1()(noise_added)
     #print(fbank_feature_1.shape)
+
     #4.one identity layer output just the input, but change the gradient calculation
     @tf.custom_gradient
     def scale_grad_layer(x):
@@ -145,7 +149,23 @@ def my_convolutional_model(input_audio_shape = (25840,),    #input_shape(32,32,3
         return x, grad
 
     fbank_feature_1_scaled = Lambda(lambda x : scale_grad_layer(x), name = 'scaling')(fbank_feature_1) 
-    fbank_feature_2 = fbank_layer_2()(fbank_feature_1_scaled)
+
+    #5. Yet another scaling is applied
+    #   Need the spectrogram of orignial audio in the first place. 
+    #   D = M - S
+    @tf.custom_gradient
+    def scale_grad_layer_2(x):
+        def grad(dy):
+            pspec_diff = K.abs(fbank_feature_1_scaled - inputs_ori_audiospec)
+            pspec_diff = 20 * (K.log(pspec_diff / K.max(inputs_ori_audiospec)) / K.log(10.0))
+            f = 10
+            acceptable_diff = inputs_hearing_threshold - pspec_diff + f # f is nabla, denoting the acceptable cross threshold
+            acceptable_diff = K.maximum(acceptable_diff, 0)
+            normalied_acceptable_diff = (acceptable_diff - K.min(acceptable_diff)) / (K.max(acceptable_diff) - K.min(acceptable_diff))
+            return tf.multiply(dy, normalied_acceptable_diff)
+        return x, grad
+    fbank_feature_1_1 = Lambda( lambda x : scale_grad_layer_2(x), name = 'scaling2')(fbank_feature_1_scaled)
+    fbank_feature_2 = fbank_layer_2()(fbank_feature_1_1)
     # Another try
     #@tf.RegisterGradient("ClipGrad")
     #def _clip_grad(unused_op, grad):
@@ -165,7 +185,7 @@ def my_convolutional_model(input_audio_shape = (25840,),    #input_shape(32,32,3
     x = Dense(512, name='affine')(x)  # .shape = (BATCH_SIZE , 512)
     x = Lambda(lambda y: K.l2_normalize(y, axis=1), name='ln')(x)
 
-    model = Model(inputs=[inputs_audio, inputs_hearing_threshold], outputs=x, name='convolutional')
+    model = Model(inputs=[inputs_audio, inputs_hearing_threshold, inputs_ori_audiospec], outputs=x, name='convolutional')
 #   model = Model(inputs, fbank_feature, name='fbank_features')
     #print(model.summary())
     return model
