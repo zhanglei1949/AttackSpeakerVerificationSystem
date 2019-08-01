@@ -121,9 +121,13 @@ def convolutional_model(input_shape=(NUM_FRAMES,64, 1),    #input_shape(32,32,3)
 
     def cnn_component(inp):
         x_ = conv_and_res_block(inp, 64, stage=1)
+        #print(x_.shape)
         x_ = conv_and_res_block(x_, 128, stage=2)
+        #print(x_.shape)
         x_ = conv_and_res_block(x_, 256, stage=3)
+        #print(x_.shape)
         x_ = conv_and_res_block(x_, 512, stage=4)
+        #print(x_.shape)
         return x_
 
     inputs = Input(shape=input_shape)  # TODO the network should be definable without explicit batch shape

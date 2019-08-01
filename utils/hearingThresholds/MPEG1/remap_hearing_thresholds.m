@@ -47,5 +47,5 @@ remapped_heating_thr_dB = resampled_LTmin(round(idx),:);
 %% ----- normalize values ------ %%
 normalized = remapped_heating_thr_dB - min(LTq);
 remapped_heating_thr = normalized./ (max(max(LTmin_all)) - min(LTq));
-%remapped_heating_thr = 10 .^ (remapped_heating_thr_dB/10);
+remapped_heating_thr = 10 .^ (remapped_heating_thr_dB/10);
      

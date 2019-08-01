@@ -136,8 +136,8 @@ def eval_model(model,train_batch_size=c.BATCH_SIZE * c.TRIPLET_PER_BATCH, test_d
     nrof_pairs = min(len(y_pred), len(y_true))
     y_pred = y_pred[:nrof_pairs]
     y_true = y_true[:nrof_pairs]
-    fm, tpr, acc, eer = evaluate(y_pred, y_true)
-    return fm, tpr, acc, eer
+    fm, tpr, acc, eer,threshold = evaluate(y_pred, y_true)
+    return fm, tpr, acc, eer, threshold
 
 
 if __name__ == '__main__':
@@ -154,5 +154,5 @@ if __name__ == '__main__':
             print('Found checkpoint [{}]. Resume from here...'.format(last_checkpoint))
             gru_model.load_weights(last_checkpoint)
 
-    fm, tpr, acc, eer = eval_model(model, check_partial=True,gru_model=gru_model)
-    print("f-measure = {0}, true positive rate = {1}, accuracy = {2}, equal error rate = {3}".format(fm, tpr, acc, eer))
+    fm, tpr, acc, eer, threshold = eval_model(model, check_partial=True,gru_model=gru_model)
+    print("f-measure = {0}, true positive rate = {1}, accuracy = {2}, equal error rate = {3}, threshold = {4}".format(fm, tpr, acc, eer,threshold))

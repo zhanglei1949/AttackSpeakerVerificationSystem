@@ -7,9 +7,9 @@ def evaluate(sims, labels):
     thresholds = np.arange(0, 1.0, 0.001)
     fm, tpr, acc = calculate_roc(thresholds, sims,
         labels)
-    eer = calculate_eer(thresholds, sims,
+    eer, threshold  = calculate_eer(thresholds, sims,
         labels)
-    return fm, tpr, acc, eer
+    return fm, tpr, acc, eer, threshold
 
 
 def calculate_roc(thresholds, sims, labels):
@@ -79,7 +79,7 @@ def calculate_eer(thresholds, sims, labels):
 
     eer = (frr + far)/2
 
-    return eer
+    return eer, thresholds[eer_index]
 
 
 def calculate_val_far(threshold, sims, actual_issame):

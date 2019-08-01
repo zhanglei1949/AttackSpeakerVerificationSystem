@@ -163,6 +163,7 @@ def my_convolutional_model(input_audio_shape = (25840,),    #input_shape(32,32,3
             acceptable_diff = K.maximum(acceptable_diff, 0)
             normalied_acceptable_diff = (acceptable_diff - K.min(acceptable_diff)) / (K.max(acceptable_diff) - K.min(acceptable_diff))
             return tf.multiply(dy, normalied_acceptable_diff)
+            #return dy
         return x, grad
     fbank_feature_1_1 = Lambda( lambda x : scale_grad_layer_2(x), name = 'scaling2')(fbank_feature_1_scaled)
     fbank_feature_2 = fbank_layer_2()(fbank_feature_1_1)
@@ -177,7 +178,7 @@ def my_convolutional_model(input_audio_shape = (25840,),    #input_shape(32,32,3
     # Yet anther try
     #fbank_feature_scaled = Lambda(lambda x: 10 * x + K.stop_gradient(x - 10 * x), name = "ccc")(fbank_feature)
 
-    print(fbank_feature_2.shape)
+    #print(fbank_feature_2.shape)
     #x = Lambda(lambda y: K.reshape(y, (batch_size*num_frames,input_shape[1], input_shape[2], input_shape[3])), name='pre_reshape')(inputs)
     x = cnn_component(fbank_feature_2)  # .shape = (BATCH_SIZE , num_frames/16, 64/16, 512)
     x = Lambda(lambda y: K.reshape(y, (-1, math.ceil(num_frames/16), 2048)), name='reshape')(x)

@@ -1,0 +1,62 @@
+/home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph10_1.wav
+Usage: python EnrollProfile.py <subscription_key> <profile_id> <enrollment_file_path> <subscription_key> is the subscription key for the service <profile_id> is the profile ID of the profile to enroll <enrollment_file_path> is the enrollment audio file path
+f0ce8e14-72bf-4f9e-99d5-391ecebf01c4 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph10_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = be yourself everyone else is already taken
+f0ce8e14-72bf-4f9e-99d5-391ecebf01c4 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph10_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = be yourself everyone else is already taken
+f0ce8e14-72bf-4f9e-99d5-391ecebf01c4 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph10_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = be yourself everyone else is already taken
+eec79373-4545-4dcd-8401-17bbb29e3bb0 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph1_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = i am going to make him an offer he cannot refuse
+eec79373-4545-4dcd-8401-17bbb29e3bb0 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph1_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = i am going to make him an offer he cannot refuse
+eec79373-4545-4dcd-8401-17bbb29e3bb0 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph1_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = i am going to make him an offer he cannot refuse
+075aa77c-800e-4da0-90d4-ddcc8d6bcb06 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph2_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = houston we have had a problem
+075aa77c-800e-4da0-90d4-ddcc8d6bcb06 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph2_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = houston we have had a problem
+075aa77c-800e-4da0-90d4-ddcc8d6bcb06 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph2_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = houston we have had a problem
+4a19080b-c3bb-4674-a797-d979fbd5d248 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph3_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = my voice is my passport verify me
+4a19080b-c3bb-4674-a797-d979fbd5d248 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph3_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = my voice is my passport verify me
+4a19080b-c3bb-4674-a797-d979fbd5d248 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph3_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = my voice is my passport verify me
+2a15002c-ba89-4955-beb0-15536e0d8763 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph4_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = apple juice tastes funny after toothpaste
+2a15002c-ba89-4955-beb0-15536e0d8763 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph4_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = apple juice tastes funny after toothpaste
+2a15002c-ba89-4955-beb0-15536e0d8763 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph4_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = apple juice tastes funny after toothpaste
+7b972e19-fbaa-42f6-a702-7136a43bfdb4 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph5_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = you can get in without your password
+7b972e19-fbaa-42f6-a702-7136a43bfdb4 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph5_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = you can get in without your password
+7b972e19-fbaa-42f6-a702-7136a43bfdb4 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph5_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = you can get in without your password
+596811ca-9318-4651-bde8-308fa25544c3 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph6_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = you can activate security system now
+596811ca-9318-4651-bde8-308fa25544c3 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph6_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = you can activate security system now
+596811ca-9318-4651-bde8-308fa25544c3 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph6_3.wav
+
+9dec4616-3080-402f-8e05-6dcfaf584c61 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph7_1.wav
+
+9dec4616-3080-402f-8e05-6dcfaf584c61 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph7_2.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = my voice is stronger than passwords
+9dec4616-3080-402f-8e05-6dcfaf584c61 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph7_3.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = my voice is stronger than passwords
+751566df-4f0c-4108-8d3e-59d4be2c1a1b /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph8_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = my password is not your business
+751566df-4f0c-4108-8d3e-59d4be2c1a1b /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph8_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = my password is not your business
+751566df-4f0c-4108-8d3e-59d4be2c1a1b /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph8_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = my password is not your business
+53e299f1-3d71-48d4-bd69-0205fd148a50 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph9_1.wav
+Enrollments Completed = 1 Remaining Enrollments = 2 Enrollment Status = Enrolling Enrollment Phrase = my name is unknown to you
+53e299f1-3d71-48d4-bd69-0205fd148a50 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph9_2.wav
+Enrollments Completed = 2 Remaining Enrollments = 1 Enrollment Status = Enrolling Enrollment Phrase = my name is unknown to you
+53e299f1-3d71-48d4-bd69-0205fd148a50 /home/lei/2019/AttackSpeakerVerification/data/lei/Gmail/lei_ph9_3.wav
+Enrollments Completed = 3 Remaining Enrollments = 0 Enrollment Status = Enrolled Enrollment Phrase = my name is unknown to you

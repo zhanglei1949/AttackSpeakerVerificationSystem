@@ -177,7 +177,6 @@ class fbank_layer_2(Layer):
         feat = tf.stack(outlist)
         
         feat = tf.reshape(feat, (1, feat.shape[0], feat.shape[1], feat.shape[2]))
-       
         return feat
     def compute_output_shape(self, input_shape):
         #
@@ -247,13 +246,13 @@ def cal_snr(sig, noise):
     return 20*np.log10(a1/a2)
 def cal_audiospec(audio, fs = 16000, winlen = 0.025, winstep=0.01,
                 nfft=512, lowfreq=0, highfreq=None, preemph=0.97,
-                winfunc=lambda x: np.ones((x,)),MINIMUM_POWER = -200):
+                winfunc=lambda x: np.ones((x,)),MINIMUM_POWER = -30):
     #Follow the way in matlab's calculation, for convenience of comparision
     highfreq= highfreq or fs/2
     audio = sigproc.preemphasis(audio,preemph)
     frames = sigproc.framesig(audio, winlen*fs, winstep*fs, winfunc)
     pspec = sigproc.powspec(frames,nfft)
-    pspec = np.maximum(10 * np.log10(pspec), MINIMUM_POWER)
+    #pspec = np.maximum(10 * np.log10(pspec), MINIMUM_POWER)
     print("ori audio spec", pspec.shape)
     # normalize to 96dB
     max_val = np.max(pspec)
